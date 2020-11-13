@@ -37,7 +37,7 @@ process.on('uncaughtException', err => {
 
 // routes
 app.use(require("./routes/html_routes.js"));
-app.use(require("./routes/api_routes.js"));
+// app.use(require("./routes/api_routes.js"));
 
 app.listen(PORT, function() {
     console.log( `App on (database: ${process.env.DB_NAME}) on: https://localhost:${PORT}` );
