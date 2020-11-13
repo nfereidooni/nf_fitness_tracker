@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../models/workout");
 
 module.exports = function(app) {
 
@@ -46,13 +46,15 @@ module.exports = function(app) {
         }     
     });                      
 
-    // app.get("/api/workouts/range", (req, res) => {
-    //     db.Workout.find({})
-    //     .then(workout => {
-    //         res.json(workout);
-    //     })
-    //     .catch(err => {
-    //         res.json(err);
-    //     });
-    // }); 
+    //app.get - gets workouts in a range
+    app.get("/api/workouts/range", (req, res) => {
+        try {
+            db.Workout.find({})
+            .then(workout => {
+                res.json(workout);
+            })}
+        catch(err){
+            console.error("error occured in line 57 file api_routes: ", error)
+        }
+    }); 
 };
