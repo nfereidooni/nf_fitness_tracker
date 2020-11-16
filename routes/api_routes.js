@@ -1,34 +1,35 @@
-const db = require("../models/workout");
+const db = require("../models");
+const router = require("express").Router();
 
-module.exports = function(app) {
+
 
 
     //app.get - gets last workout
-    app.get("/api/workouts", (req, res) => {
+    router.get("/api/workouts", (req, res) => {
         try {
             db.Workout.find({})
             .then(workout => {
                 res.json(workout);
         })}
         catch(err){
-            console.error("error occured in line 14 file api_routes: ", error);
+            console.error("error occured in line 14 file api_routes: ", err);
         }
     });
 
     //app.post - creates new workout
-    app.post("/api/workouts", (req, res) => {
+    router.post("/api/workouts", (req, res) => {
         try {
             db.Workout.create({type: "workout"})
             .then(response => {
                 res.json(response);
         })}
         catch(err){
-            console.error("error occured in line 26 file api_routes: ", error)
+            console.error("error occured in line 26 file api_routes: ", err)
         }
     });
 
     //app.put - saves exercise to an existing workout
-    app.put("/api/workouts/:id", (req, res) => {
+    router.put("/api/workouts/:id", (req, res) => {
         const workoutID = req.params.id;
         let savedExercises = [];
 
@@ -42,19 +43,19 @@ module.exports = function(app) {
                 db.Workout.findByIdAndUpdate(workoutID, {exercises: allExercises})
             })}
         catch(err){
-            console.error("error occured in line 45 file api_routes: ", error)
+            console.error("error occured in line 45 file api_routes: ", err)
         }     
     });                      
 
     //app.get - gets workouts in a range
-    app.get("/api/workouts/range", (req, res) => {
+    router.get("/api/workouts/range", (req, res) => {
         try {
             db.Workout.find({})
             .then(workout => {
                 res.json(workout);
             })}
         catch(err){
-            console.error("error occured in line 57 file api_routes: ", error)
+            console.error("error occured in line 57 file api_routes: ", err)
         }
     }); 
-};
+module.exports = router;

@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 8080;
 // dependencies & setup
 const express = require('express');
 const mongoose = require('mongoose');
-// const apiRouter = require('./ap_copied/router');
+// const apiRoutes = require('./routes/api_routes');
 const app = express();
 
 
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use( express.static('public') );
 
 // for routes
-// apiRouter(app);
+// apiRoutes(app);
 
 mongoose.connect(
     process.env.MONGODB_URI || 'mongodb://localhost/fitness_db',
