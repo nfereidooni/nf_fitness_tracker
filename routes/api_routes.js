@@ -9,19 +9,20 @@ const router = require("express").Router();
                 res.json(workout);
         })}
         catch(err){
-            console.error("error occured in line 14 file api_routes: ", err);
+            console.error("error occured in get in file api_routes: ", err);
         }
     });
 
     //app.post - creates new workout
     router.post("/api/workouts", (req, res) => {
+
         try {
-            db.Workout.create({type: "workout"})
+            db.Workout.create({exercises: req.body, type: "workout"})
             .then(response => {
                 res.json(response);
         })}
         catch(err){
-            console.error("error occured in line 26 file api_routes: ", err)
+            console.error("error occured in post in file api_routes: ", err)
         }
     });
 
@@ -32,15 +33,14 @@ const router = require("express").Router();
 
         try {
         db.Workout.find({_id: workoutID})
-            .then(workouts => {
-              
+            .then(workouts => {             
                 savedExercises = workouts[0].exercises;
                 res.json(workouts[0].exercises);
                 let allExercises = [...savedExercises, req.body]
                 db.Workout.findByIdAndUpdate(workoutID, {exercises: allExercises})
             })}
         catch(err){
-            console.error("error occured in line 45 file api_routes: ", err)
+            console.error("error occured in put in file api_routes: ", err)
         }     
     });                      
 
@@ -52,7 +52,8 @@ const router = require("express").Router();
                 res.json(workout);
             })}
         catch(err){
-            console.error("error occured in line 57 file api_routes: ", err)
+            console.error("error occured in second get in file api_routes: ", err)
         }
-    }); 
+    });
+    
 module.exports = router;
