@@ -38,7 +38,7 @@ const router = require("express").Router();
                 savedExercises = workouts[0].exercises;
                 res.json(workouts[0].exercises);
                 let allExercises = [...savedExercises, req.body]
-                db.Workout.findByIdAndUpdate(workoutID, {exercises: allExercises})
+                db.Workout.findByIdAndUpdate(workoutID, {$push: {exercises: allExercises}})
             })}
         catch(err){
             console.error("error occured in put in file api_routes: ", err)
