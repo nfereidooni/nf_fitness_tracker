@@ -19,7 +19,7 @@ const router = require("express").Router();
         try {
             const workout = req.body
             console.log(workout)
-            await db.Workout.create({exercises: workout }).then(response => {
+            await db.Workout.create({ workout }).then(response => {
                 res.json(response);
         })}
         catch(err){
