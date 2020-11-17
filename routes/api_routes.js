@@ -14,10 +14,11 @@ const router = require("express").Router();
     });
 
     //app.post - creates new workout
-    router.post("/api/workouts", (req, res) => {
+    router.post("/api/workouts", async (req, res) => {
 
         try {
-            db.Workout.create({type: "workout",exercises: [req.body]}).then(response => {
+
+            await db.Workout.create({type: "workout"}).then(response => {
                 res.json(response);
         })}
         catch(err){
