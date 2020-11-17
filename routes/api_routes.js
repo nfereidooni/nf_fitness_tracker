@@ -17,8 +17,9 @@ const router = require("express").Router();
     router.post("/api/workouts", async (req, res) => {
 
         try {
-
-            await db.Workout.create({type: "workout"}).then(response => {
+            const workout = req.body
+            console.log(workout)
+            await db.Workout.create({exercises: workout }).then(response => {
                 res.json(response);
         })}
         catch(err){
