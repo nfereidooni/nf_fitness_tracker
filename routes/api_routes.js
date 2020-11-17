@@ -30,18 +30,21 @@ const router = require("express").Router();
     //app.put - saves exercise to an existing workout
     router.put("/api/workouts/:id", (req, res) => {
         const workoutID = req.params.id;
+        const exercise = req.body;
         let savedExercises = [];
 
         try {
-        db.Workout.find({_id: workoutID})
-            .then(workouts => {             
-                savedExercises = workouts[0].exercises;
-                res.json(workouts[0].exercises);
-                console.log(req.body)
-                let allExercises = [...savedExercises, req.body]
-                db.Workout.findByIdAndUpdate(workoutID, {$push: {exercises: allExercises}})
-            })}
-        catch(err){
+            db.Workout.findByIdAndUpdate(workoutID, {$push: {exercises: exercise}}).then( response => res.json(response))
+
+        // db.Workout.find({_id: workoutID})
+        //     .then(workouts => {             
+        //         savedExercises = workouts[0].exercises;
+        //         res.json(workouts[0].exercises);
+        //         console.log(req.body)
+        //         let allExercises = [...savedExercises, req.body]
+               
+        //     })
+        }catch(err){
             console.error("error occured in put in file api_routes: ", err)
         }     
     });                      
