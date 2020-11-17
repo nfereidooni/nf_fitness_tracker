@@ -37,6 +37,7 @@ const router = require("express").Router();
             .then(workouts => {             
                 savedExercises = workouts[0].exercises;
                 res.json(workouts[0].exercises);
+                console.log(req.body)
                 let allExercises = [...savedExercises, req.body]
                 db.Workout.findByIdAndUpdate(workoutID, {$push: {exercises: allExercises}})
             })}
