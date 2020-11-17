@@ -1,9 +1,6 @@
 const db = require("../models");
 const router = require("express").Router();
 
-
-
-
     //app.get - gets last workout
     router.get("/api/workouts", (req, res) => {
         try {
