@@ -16,9 +16,6 @@ app.use(express.json());
 // for serving all the normal html
 app.use( express.static('public') );
 
-// for routes
-// apiRoutes(app);
-
 mongoose.connect(
     process.env.MONGODB_URI || 'mongodb://localhost/fitness_db',
     {

@@ -35,16 +35,8 @@ const router = require("express").Router();
 
         try {
             db.Workout.findByIdAndUpdate(workoutID, {$push: {exercises: exercise}}).then( response => res.json(response))
-
-        // db.Workout.find({_id: workoutID})
-        //     .then(workouts => {             
-        //         savedExercises = workouts[0].exercises;
-        //         res.json(workouts[0].exercises);
-        //         console.log(req.body)
-        //         let allExercises = [...savedExercises, req.body]
-               
-        //     })
-        }catch(err){
+        }
+        catch(err){
             console.error("error occured in put in file api_routes: ", err)
         }     
     });                      
